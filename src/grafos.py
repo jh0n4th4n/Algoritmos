@@ -9,9 +9,9 @@ def bfs(grafo: GrafoNaoDirigido, inicio: str) -> List[str]:
     """
     Busca em largura (Breadth-First Search) em um grafo não dirigido.
 
-    :param grafo: dicionário onde a chave é um vértice e o valor é a lista de vizinhos
+    :param grafo: dicionário {vértice: [vizinhos]}
     :param inicio: vértice inicial
-    :return: lista de vértices na ordem em que foram visitados
+    :return: ordem de visita dos vértices
     """
     visitados = set()
     ordem_visita: List[str] = []
@@ -34,9 +34,9 @@ def dfs(grafo: GrafoNaoDirigido, inicio: str) -> List[str]:
     """
     Busca em profundidade (Depth-First Search) em um grafo não dirigido.
 
-    :param grafo: dicionário onde a chave é um vértice e o valor é a lista de vizinhos
+    :param grafo: dicionário {vértice: [vizinhos]}
     :param inicio: vértice inicial
-    :return: lista de vértices na ordem em que foram visitados
+    :return: ordem de visita dos vértices
     """
     visitados = set()
     ordem_visita: List[str] = []
@@ -44,7 +44,6 @@ def dfs(grafo: GrafoNaoDirigido, inicio: str) -> List[str]:
     def _dfs_rec(vertice: str) -> None:
         visitados.add(vertice)
         ordem_visita.append(vertice)
-
         for vizinho in grafo.get(vertice, []):
             if vizinho not in visitados:
                 _dfs_rec(vizinho)

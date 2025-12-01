@@ -2,7 +2,8 @@
 
 Este projeto foi desenvolvido como parte do **Desafio da Digital Innovation One (DIO)**, com o objetivo de explorar como o **GitHub Copilot** pode auxiliar na resolução de problemas computacionais utilizando Python.
 
-A proposta é recriar e/ou aprimorar um projeto utilizando algoritmos clássicos, aplicando boas práticas de programação e documentando o raciocínio técnico. O resultado foi um programa interativo que executa **18 algoritmos diferentes**, desde operações matemáticas simples até estruturas de dados e recursão avançada.
+A proposta é recriar e/ou aprimorar um projeto utilizando algoritmos clássicos e avançados, aplicando boas práticas de programação, testes automatizados e documentando o raciocínio técnico.  
+O resultado é um programa interativo que executa **diversos algoritmos**, desde matemática básica até estruturas de dados e algoritmos de grafos.
 
 ---
 
@@ -16,6 +17,8 @@ A proposta é recriar e/ou aprimorar um projeto utilizando algoritmos clássicos
 ---
 
 ## 📊 Algoritmos Implementados
+
+### 🔹 Algoritmos Básicos / Intermediários
 
 | Nº | Algoritmo | Categoria |
 |----|-----------|-----------|
@@ -35,8 +38,27 @@ A proposta é recriar e/ou aprimorar um projeto utilizando algoritmos clássicos
 | 14 | Fatorial (recursivo) | Recursão |
 | 15 | Decimal → Binário | Conversão |
 | 16 | MergeSort | Ordenação avançada |
-| 17 | Torre de Hanói | Recursão avançada |
-| 18 | Pilha (Stack) | Estrutura de dados |
+| 17 | Torre de Hanói | Recursão |
+| 18 | Pilha (Stack) | Estrutura de dados (LIFO) |
+
+### 🔹 Algoritmos de Grafos e Otimização
+
+| Nº | Algoritmo | Categoria |
+|----|-----------|-----------|
+| 19 | BFS (Busca em Largura) | Grafos |
+| 19 | DFS (Busca em Profundidade) | Grafos |
+| 20 | Dijkstra | Menor caminho em grafo ponderado |
+| 21 | Kadane | Maior soma de subarray |
+
+### 🔹 Algoritmos Especialistas (Avançados)
+
+| Nº | Algoritmo | Categoria |
+|----|-----------|-----------|
+| 22 | KMP (Knuth–Morris–Pratt) | Busca eficiente em strings |
+| 23 | Distância de edição (Levenshtein) | Programação Dinâmica |
+| 24 | Floyd–Warshall | Todos os menores caminhos (grafos) |
+| 25 | Union-Find (Disjoint Set Union) | Estrutura de dados para conjuntos disjuntos |
+| 26 | Segment Tree | Estrutura de dados para intervalo (range sum) |
 
 ---
 
@@ -47,31 +69,39 @@ resolvendo-algoritmos-com-github-copilot/
 ├─ src/
 │  ├─ main.py
 │  ├─ fatorial.py
+│  ├─ fatorial_recursivo.py
 │  ├─ fibonacci.py
 │  ├─ primos.py
 │  ├─ ordenacao.py
-│  ├─ palindromo.py
-│  ├─ mdc_mmc.py
-│  ├─ busca_linear.py
 │  ├─ quicksort.py
+│  ├─ mergesort.py
+│  ├─ palindromo.py
 │  ├─ contagem_vogais.py
 │  ├─ inverter_string.py
 │  ├─ potencia.py
 │  ├─ numero_perfeito.py
+│  ├─ busca_linear.py
 │  ├─ busca_binaria.py
-│  ├─ fatorial_recursivo.py
+│  ├─ mdc_mmc.py
 │  ├─ decimal_binario.py
-│  ├─ mergesort.py
 │  ├─ hanoi.py
-│  └─ pilha.py
+│  ├─ pilha.py
+│  ├─ grafos.py
+│  ├─ dijkstra.py
+│  ├─ kadane.py
+│  ├─ kmp.py
+│  ├─ edit_distance.py
+│  ├─ floyd_warshall.py
+│  ├─ union_find.py
+│  └─ segment_tree.py
 ├─ tests/
-│  └─ test_algoritmos.py
+│  ├─ test_algoritmos.py
 ├─ requirements.txt
 └─ README.md
+```
 
-
-▶️ Como Executar o Projeto
-1️⃣ Clone o repositório
+## ▶️ Como Executar o Projeto
+### 1️⃣ Clone o repositório
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd resolvendo-algoritmos-com-github-copilot
 
@@ -94,7 +124,7 @@ pip install -r requirements.txt
 4️⃣ Execute o programa
 python src/main.py
 
-🧪 Como Executar os Testes
+### 🧪 Como Executar os Testes
 
 Certifique-se de estar na pasta raiz do projeto e com o ambiente virtual ativado:
 
@@ -106,58 +136,57 @@ Ou:
 python -m pytest
 
 
-Se tudo estiver correto:
+Se tudo estiver correto, algo como:
 
 ==================== 100% passed ====================
 
-📌 Exemplo de Execução
+### 📌 Exemplo de Execução
 === Resolvendo Algoritmos com GitHub Copilot ===
 1  - Calcular fatorial (iterativo)
 2  - Gerar sequência de Fibonacci
 ...
-18 - Demonstração de Pilha (Stack)
+26 - Demonstração de Segment Tree (soma em intervalo)
 0  - Sair
 Escolha uma opção:
 
-🤖 Como o GitHub Copilot ajudou
+### 🤖 Como o GitHub Copilot ajudou
 
-Durante o desenvolvimento, o Copilot contribuiu com:
+Durante o desenvolvimento deste projeto, o GitHub Copilot foi utilizado para:
 
-Sugestões automáticas de código
+Sugerir implementações iniciais de funções a partir de descrições em linguagem natural;
 
-Implementações recursivas e matemáticas otimizadas
+Propor soluções para algoritmos clássicos (fatorial, Fibonacci, ordenação, busca, etc.);
 
-Geração de docstrings e testes
+Auxiliar na implementação de algoritmos avançados:
 
-Melhoria da estrutura de código
+KMP, Levenshtein, Floyd–Warshall, Union-Find, Segment Tree, Dijkstra, Kadane;
 
-Aceleração na prototipagem de algoritmos
+Agilizar a escrita de testes automatizados com Pytest;
 
-Este projeto mostra como a IA pode ser usada de forma educacional e produtiva, reduzindo tempo de desenvolvimento.
+Ajudar na refatoração e melhoria da legibilidade do código.
 
-🔮 Melhorias Futuras
+Mesmo com o uso da IA, todo o código foi revisado e ajustado manualmente, reforçando o aprendizado dos algoritmos.
 
-Interface gráfica (Tkinter, Streamlit ou PySimpleGUI)
+### 🔮 Melhorias Futuras
 
-Implementação de algoritmos de grafos (BFS, DFS, Dijkstra)
+Algumas ideias para evolução do projeto:
 
-Análise de complexidade dos algoritmos
+Adicionar algoritmos de grafos adicionais (Kruskal, Prim, Bellman–Ford);
 
-Transformar o projeto em uma biblioteca Python
+Implementar árvore binária de busca completa com remoção;
 
-Publicação no PyPI
+Criar uma interface gráfica ou web para visualizar a execução dos algoritmos;
 
-Criar testes para o menu interativo
+Adicionar análise de complexidade (tempo e espaço) no README de cada algoritmo;
 
-👨‍💻 Autor
+Transformar este projeto em um pacote Python e publicar no PyPI.
 
-Seu Nome
+ ## 👨‍💻 Autor: Jhonathan Lucas
+
 Projeto desenvolvido para o Desafio DIO – Resolvendo Algoritmos com GitHub Copilot.
 
-Se este projeto te ajudou, deixe uma ⭐ no repositório!
+Se este projeto foi útil, deixe uma ⭐ no repositório!
 
-📄 Licença
+### 📄 Licença
 
-Este projeto está sob a licença MIT – sinta-se livre para usar, modificar e compartilhar.
-
-"Programar é pensar; escrever código é apenas a consequência." 🧠💻
+Este projeto está sob a licença MIT – você pode usar, estudar, modificar e compartilhar livremente.

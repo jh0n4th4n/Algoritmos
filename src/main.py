@@ -16,6 +16,14 @@ from decimal_binario import decimal_para_binario
 from mergesort import mergesort
 from hanoi import resolver_hanoi
 from pilha import Pilha
+from grafos import bfs, dfs
+from dijkstra import dijkstra, reconstruir_caminho
+from kadane import maior_soma_subarray
+from kmp import kmp_busca
+from edit_distance import distancia_edicao
+from floyd_warshall import floyd_warshall, INF
+from union_find import UnionFind
+from segment_tree import SegmentTree
 
 
 def menu():
@@ -38,6 +46,14 @@ def menu():
     print("16 - Ordenar lista (MergeSort)")
     print("17 - Torre de Hanói")
     print("18 - Demonstração de Pilha (Stack)")
+    print("19 - BFS e DFS em grafo (demonstração)")
+    print("20 - Menor caminho em grafo (Dijkstra)")
+    print("21 - Maior soma de subarray (Kadane)")
+    print("22 - Busca de padrão em texto (KMP)")
+    print("23 - Distância de edição (Levenshtein)")
+    print("24 - Todos os menores caminhos (Floyd–Warshall)")
+    print("25 - Demonstração de Union-Find")
+    print("26 - Demonstração de Segment Tree (soma em intervalo)")
     print("0  - Sair")
 
 
@@ -94,7 +110,7 @@ def main():
             a = ler_inteiro("Digite o 1º número: ")
             b = ler_inteiro("Digite o 2º número: ")
             resultado = calcular_mdc_mmc(a, b)
-            print(f"MDC({a},{b})={resultado['MDC']} | MMC({a},{b})={resultado['MMC']}")
+            print(f"MDC({a},{b}) = {resultado['MDC']} | MMC({a},{b}) = {resultado['MMC']}")
 
         elif opcao == "7":
             lista = ler_lista_inteiros("Digite os números: ")
@@ -166,6 +182,139 @@ def main():
             while not pilha.esta_vazia():
                 print("->", pilha.desempilhar())
             print("Pilha vazia!")
+
+        elif opcao == "19":
+            print("=== Demonstração de BFS e DFS em grafo ===")
+            grafo_exemplo = {
+                "A": ["B", "C"],
+                "B": ["A", "D", "E"],
+                "C": ["A", "F"],
+                "D": ["B"],
+                "E": ["B", "F"],
+                "F": ["C", "E"],
+            }
+            inicio = input("Vértice inicial (ex.: A): ").strip().upper() or "A"
+            if inicio not in grafo_exemplo:
+                print("Vértice não encontrado no grafo de exemplo. Usando A.")
+                inicio = "A"
+            print("BFS:", bfs(grafo_exemplo, inicio))
+            print("DFS:", dfs(grafo_exemplo, inicio))
+
+        elif opcao == "20":
+            print("=== Menor caminho em grafo (Dijkstra) ===")
+            grafo_ponderado = {
+                "A": {"B": 2, "C": 5},
+                "B": {"A": 2, "D": 1, "E": 3},
+                "C": {"A": 5, "F": 2},
+                "D": {"B": 1, "E": 1},
+                "E": {"B": 3, "D": 1, "F": 2},
+                "F": {"C": 2, "E": 2},
+            }
+            origem = input("Vértice de origem (ex.: A): ").strip().upper() or "A"
+            destino = input("Vértice de destino (ex.: F): ").strip().upper() or "F"
+
+            if origem not in grafo_ponderado or destino not in grafo_ponderado:
+                print("Origem ou destino inválidos no grafo de exemplo.")
+            else:
+                resultado = dijkstra(grafo_ponderado, origem)
+                caminho = reconstruir_caminho(resultado, origem, destino)
+
+                if not caminho:
+                    print("Não há caminho entre origem e destino.")
+                else:
+                    distancia, _ = resultado[destino]
+                    print(f"Menor distância de {origem} até {destino}: {distancia}")
+                    print("Caminho:", " -> ".join(caminho))
+
+        elif opcao == "21":
+            print("=== Maior soma de subarray (Kadane) ===")
+            lista = ler_lista_inteiros("Digite números inteiros separados por espaço: ")
+            if not lista:
+                print("Lista vazia. A maior soma é 0.")
+            else:
+                melhor_soma, inicio, fim = maior_soma_subarray(lista)
+                subarray = lista[inicio:fim + 1]
+                print(f"Maior soma: {melhor_soma}")
+                print(f"Subarray correspondente: {subarray} (índices {inicio}..{fim})")
+
+        elif opcao == "22":
+            print("=== KMP - Busca de padrão em texto ===")
+            texto = input("Digite o texto: ")
+            padrao = input("Digite o padrão a ser buscado: ")
+            posicoes = kmp_busca(texto, padrao)
+            if not posicoes:
+                print("Padrão não encontrado no texto.")
+            else:
+                print(f"Padrão encontrado nas posições: {posicoes}")
+
+        elif opcao == "23":
+            print("=== Distância de edição (Levenshtein) ===")
+            a = input("Digite a primeira string: ")
+            b = input("Digite a segunda string: ")
+            dist = distancia_edicao(a, b)
+            print(f"Distância de edição entre '{a}' e '{b}': {dist}")
+
+        elif opcao == "24":
+            print("=== Floyd–Warshall: todos os menores caminhos ===")
+            print("Usando uma matriz de exemplo 3x3.")
+            matriz = [
+                [0,   3,   INF],
+                [INF, 0,   1],
+                [2,   INF, 0],
+            ]
+            dist = floyd_warshall(matriz)
+            print("Matriz de distâncias mínimas:")
+            for linha in dist:
+                print(linha)
+
+        elif opcao == "25":
+            print("=== Demonstração de Union-Find ===")
+            uf = UnionFind()
+            elementos = ["A", "B", "C", "D", "E"]
+            print("Uniões: (A,B), (B,C), (D,E)")
+            uf.unir("A", "B")
+            uf.unir("B", "C")
+            uf.unir("D", "E")
+            for x in elementos:
+                for y in elementos:
+                    if x < y:
+                        mesmo = uf.mesmo_conjunto(x, y)
+                        print(f"{x} e {y} estão no mesmo conjunto? {mesmo}")
+
+        elif opcao == "26":
+            print("=== Demonstração de Segment Tree (soma em intervalo) ===")
+            lista = ler_lista_inteiros("Digite números inteiros para a lista base: ")
+            if not lista:
+                print("Lista vazia, nada a fazer.")
+            else:
+                st = SegmentTree(lista)
+                print("Segment Tree criada.")
+                while True:
+                    print("\n1 - Consultar soma em intervalo [l, r]")
+                    print("2 - Atualizar posição específica")
+                    print("0 - Voltar ao menu principal")
+                    escolha = input("Escolha: ").strip()
+
+                    if escolha == "1":
+                        l = ler_inteiro("Início do intervalo (l): ")
+                        r = ler_inteiro("Fim do intervalo (r): ")
+                        if 0 <= l <= r < len(lista):
+                            print(f"Soma em [{l}, {r}] = {st.query(l, r)}")
+                        else:
+                            print("Intervalo inválido.")
+                    elif escolha == "2":
+                        idx = ler_inteiro("Índice a atualizar: ")
+                        if 0 <= idx < len(lista):
+                            valor = ler_inteiro("Novo valor: ")
+                            lista[idx] = valor
+                            st.update(idx, valor)
+                            print("Valor atualizado.")
+                        else:
+                            print("Índice inválido.")
+                    elif escolha == "0":
+                        break
+                    else:
+                        print("Opção inválida.")
 
         elif opcao == "0":
             print("Saindo... Obrigado por utilizar o programa!")
